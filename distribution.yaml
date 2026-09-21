@@ -1,0 +1,8 @@
+name: sdd-full
+version: 1.0.0
+description: "Full SDD pipeline — explore, propose, spec, design, QA, implement, verify. Self-contained end-to-end orchestrator from user request to verified implementation."
+hermes_requires: ">=0.12.0"
+author: "Lisandro Cacciatore"
+env:
+  - HERMES_MODEL
+  - DEEPSEEK_API_KEY

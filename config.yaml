@@ -1,0 +1,26 @@
+model:
+  name: deepseek-chat
+  provider: deepseek
+
+# Delegación — keys del schema real de Hermes v0.20.x.
+# NO usar `skills.enabled` (no existe) ni `agent.max_iterations`
+# (la real es `agent.max_turns`).
+delegation:
+  # La topologia de este pipeline es orquestador -> child (plana).
+  # 2 deja headroom por si un child necesita delegar; el rango valido es 1-3.
+  max_spawn_depth: 2
+  max_concurrent_children: 4      # los 4 QA en paralelo (solo leen)
+  child_timeout_seconds: 2400     # 40 min por fase (implement es la mas larga)
+  inherit_mcp_toolsets: false     # interseccion estricta de toolsets
+  # Con sub-agentes en background el padre es dueno de stdin: si un child
+  # topa un prompt de aprobacion y bloquea, deadlockea.
+  # false = auto-deny (seguro). true = auto-approve (solo batch confiable).
+  subagent_auto_approve: false
+
+terminal:
+  backend: local
+  timeout: 3600
+
+agent:
+  max_turns: 80                   # iteraciones de tool-calling
+  gateway_timeout: 600

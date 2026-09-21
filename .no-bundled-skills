@@ -1,0 +1,11 @@
+This profile opted out of bundled-skill seeding.
+
+Effect: `hermes profile create` / `hermes update` will NOT copy Hermes'
+bundled skill catalog into this profile's skills/ directory. The profile
+ships its own skills and stays clean.
+
+Note: this does NOT hide the global skill catalog at runtime. There is no
+per-profile runtime allow-list in Hermes v0.20.x (only `skills.disabled`,
+a deny-list).
+
+Delete this file to re-enable bundled-skill sync on the next `hermes update`.

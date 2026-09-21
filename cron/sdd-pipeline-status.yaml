@@ -1,0 +1,11 @@
+name: sdd-pipeline-status
+description: Reporta el estado de los pipelines SDD activos
+schedule: "0 11 * * *"
+delivery: telegram
+prompt: |
+  Revisá el estado de todos los pipelines SDD:
+  1. Changes activos en odd/specs/ o openspec/changes/
+  2. Changes con pipeline completo (spec + qa-report + verify-report)
+  3. Changes pausados por no convergencia
+  4. Changes con verify FAIL pendientes de corrección
+  No publiques nada. Solo informá el estado.
